@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +9,15 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @yield('styles')
 </head>
+
 <body>
-    <x-frontend.navbar/>
+    @include('sweetalert::alert')
+
+    <x-frontend.navbar />
 
     @yield('content')
 
-    <x-frontend.footer/>
+    <x-frontend.footer />
 </body>
+
 </html>
