@@ -27,7 +27,7 @@ class SellerPanelProvider extends PanelProvider
             ->id('seller')
             ->path('seller')
             ->login()
-            ->brandLogo('Seller Panel')
+            ->brandName('MeroBazar Seller Panel')
             ->authGuard('seller')
             ->colors([
                 'primary' => Color::Orange,
