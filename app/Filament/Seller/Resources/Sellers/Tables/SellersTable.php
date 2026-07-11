@@ -5,7 +5,6 @@ namespace App\Filament\Seller\Resources\Sellers\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -20,28 +19,13 @@ class SellersTable
                 TextColumn::make('email')
                     ->label('Email address')
                     ->searchable(),
-                TextColumn::make('shop_name')
-                    ->searchable(),
-                TextColumn::make('khalti_secrect_key')
-                    ->searchable(),
+                TextColumn::make('shop_name'),
                 TextColumn::make('status')
                     ->badge(),
                 TextColumn::make('expired_date')
                     ->date()
                     ->sortable(),
-                TextColumn::make('contact')
-                    ->searchable(),
-                TextColumn::make('citizenship_photo')
-                    ->searchable(),
-                ImageColumn::make('image'),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('contact'),
             ])
             ->filters([
                 //
