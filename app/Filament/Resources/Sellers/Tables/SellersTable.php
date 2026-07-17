@@ -19,12 +19,16 @@ class SellersTable
                     ->searchable(),
                 TextColumn::make('shop_name')
                     ->searchable(),
+                TextColumn::make('registration_number')
+                    ->label('Registration Number')
+                    ->searchable(),
                 TextColumn::make('status')
                     ->badge(),
                 TextColumn::make('expired_date')
                     ->date()
                     ->sortable(),
-                TextColumn::make('contact')
+                TextColumn::make('email')
+                    ->label('Email address')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
@@ -34,7 +38,7 @@ class SellersTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-            ])
+            ])->defaultSort('latest')
             ->filters([
                 //
             ])

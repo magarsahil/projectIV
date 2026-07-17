@@ -22,8 +22,7 @@ class SellerForm
                     ->schema([
                         Section::make('Seller Information')
                             ->schema([
-                                TextInput::make('name')
-                                    ->required(),
+                                TextInput::make('name'),
                                 TextInput::make('email')
                                     ->label('Email address')
                                     ->email()
@@ -32,6 +31,9 @@ class SellerForm
                                     ->required(),
                                 TextInput::make('contact')
                                     ->required(),
+                                TextInput::make('registration_number')
+                                    ->label('Registration Number')
+                                    ->columnSpanFull(),
                             ])->columns(2),
                         Section::make('Upload Documents')
                             ->icon(Heroicon::Photo)

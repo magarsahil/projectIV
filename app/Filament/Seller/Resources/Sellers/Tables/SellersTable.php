@@ -20,11 +20,10 @@ class SellersTable
                     ->label('Email address')
                     ->searchable(),
                 TextColumn::make('shop_name'),
-                TextColumn::make('status')
-                    ->badge(),
+                TextColumn::make('registration_number')
+                    ->label('Registration Number'),
                 TextColumn::make('expired_date')
-                    ->date()
-                    ->sortable(),
+                    ->date(),
                 TextColumn::make('contact'),
             ])
             ->filters([

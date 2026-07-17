@@ -2,9 +2,7 @@
 
 namespace App\Filament\Seller\Resources\Sellers\Schemas;
 
-use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
@@ -32,6 +30,10 @@ class SellerForm
                                     ->required(),
                                 TextInput::make('contact')
                                     ->required(),
+                                TextInput::make('registration_number')
+                                    ->label('Registration Number')
+                                    ->columnSpanFull()
+                                    ->required(),
                             ])->columns(2),
                         Section::make('Upload Documents')
                             ->icon(Heroicon::Photo)
@@ -41,27 +43,24 @@ class SellerForm
                                     ->image()
                                     ->required(),
                                 FileUpload::make('image')
-                                    ->label('Profile Image')
-                                    ->image(),
+                                    ->label('Company Registeration Image')
+                                    ->image()
+                                    ->required()
+                                    ->acceptedFileTypes(
+                                        [
+                                            'image/jpeg',
+                                            'image/png',
+                                            'image/jpg',
+                                        ]
+                                    ),
                             ]),
                     ])->columns(2),
 
-                Section::make('Account Information')
+                Section::make('Khalti Secret Key')
                     ->icon(Heroicon::LockClosed)
                     ->schema([
-                        TextInput::make('khalti_secrect_key'),
-                        Section::make('Account Status')
-                            ->schema([
-                                Select::make('status')
-                                    ->options([
-                                        'active' => 'Active',
-                                        'inactive' => 'Inactive',
-                                        'pending' => 'Pending',
-                                    ])
-                                    ->required(),
-                                DatePicker::make('expired_date')
-                                    ->label('Expired Date'),
-                            ])->columns(2),
+                        TextInput::make('khalti_secrect_key')
+                            ->label('Khalti Secret Key'),
                     ]),
             ])->columns(1);
     }

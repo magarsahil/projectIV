@@ -13,12 +13,15 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use Override;
 
 class SellerResource extends Resource
 {
     protected static ?string $model = Seller::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::User;
 
     protected static ?string $recordTitleAttribute = 'name';
 
@@ -27,10 +30,17 @@ class SellerResource extends Resource
         return SellerForm::configure($schema);
     }
 
+    #[Override]
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->where('id', Auth::guard('seller')->id());
+    }
+
     public static function table(Table $table): Table
     {
         return SellersTable::configure($table);
     }
+    protected static ?string $pluralModelLabel = 'Seller';
 
     public static function getRelations(): array
     {
