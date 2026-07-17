@@ -2,7 +2,14 @@
 
 namespace App\Filament\Resources\Products\Schemas;
 
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Group;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Filament\Tables\Columns\TextColumn;
 
 class ProductForm
 {
@@ -10,7 +17,61 @@ class ProductForm
     {
         return $schema
             ->components([
-                //
-            ]);
+                Group::make()
+                    ->schema([
+                        Section::make('Product Information')
+                            ->schema([
+                                TextInput::make('name')
+                                    ->required(),
+                                TextInput::make('price')
+                                    ->required()
+                                    ->prefix('Rs.'),
+                                TextInput::make('title')
+                                    ->required()
+                                    ->columnSpanFull(),
+                                TextColumn::make('seller.name')
+                                    ->label('Seller')
+                                    ->sortable(),
+                                Select::make('category_id')
+                                    ->relationship('category', 'name')
+                                    ->required()
+                                    ->columnSpanFull(),
+                            ])->columns(2),
+                        Section::make('Upload Images')
+                            ->schema([
+                                FileUpload::make('main_image')
+                                    ->image()
+                                    ->directory('products/images')
+                                    ->acceptedFileTypes(
+                                        [
+                                            'image/jpeg',
+                                            'image/png',
+                                            'image/jpg',
+                                        ]
+                                    ),
+                            ]),
+                    ])->columns(2),
+
+                Section::make('Product Description')
+                    ->schema([
+                        RichEditor::make('description')
+                            ->required()
+                            ->columnSpanFull(),
+                    ])->columns(1),
+                Section::make('Additional Images')
+                    ->schema([
+                        FileUpload::make('images')
+                            ->multiple()
+                            ->image()
+                            ->directory('products/images')
+                            ->acceptedFileTypes(
+                                [
+                                    'image/jpeg',
+                                    'image/png',
+                                    'image/jpg',
+                                ]
+                            ),
+                    ])->columns(1),
+            ])->columns(1);
     }
 }
