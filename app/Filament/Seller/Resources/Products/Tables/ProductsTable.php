@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Products\Tables;
+namespace App\Filament\Seller\Resources\Products\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
@@ -18,13 +18,12 @@ class ProductsTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
+
                 TextColumn::make('price')
-                    ->money()
+                    ->money('Npr',true)
                     ->sortable(),
                 ImageColumn::make('main_image'),
-                TextColumn::make('seller.name')
-                    ->numeric()
-                    ->sortable(),
+
                 TextColumn::make('category.name')
                     ->numeric()
                     ->sortable(),

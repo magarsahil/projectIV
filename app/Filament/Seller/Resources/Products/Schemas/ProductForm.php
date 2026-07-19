@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Filament\Resources\Products\Schemas;
+namespace App\Filament\Seller\Resources\Products\Schemas;
 
-// use Dom\Text;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -30,9 +29,8 @@ class ProductForm
                                 TextInput::make('title')
                                     ->required()
                                     ->columnSpanFull(),
-                                TextEntry::make('seller.name')
-                                    ->label('Seller Name')
-                                    ->columnSpanFull(),
+                                Hidden::make('seller_id')
+                                    ->default(auth()->guard('seller')->id()),
                                 Select::make('category_id')
                                     ->relationship('category', 'name')
                                     ->required()
