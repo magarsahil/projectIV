@@ -17,10 +17,5 @@ class AdminSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => bcrypt('password'),
         ]);
-        DB::table('sellers')->insert([
-            'name' => 'Test Seller',
-            'email' => 'seller@gmail.com',
-            'password' => bcrypt('password'),
-        ]);
     }
 }
